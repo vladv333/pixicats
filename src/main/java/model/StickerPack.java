@@ -9,16 +9,18 @@ public class StickerPack {
     private final String nameRu;
     private final String nameEt;
     private final String price;
+    private final int priceStars;
     private final String previewUrl;
     private final String stickerPackUrl;
 
     public StickerPack(String id, String nameEn, String nameRu, String nameEt,
-                       String price, String previewUrl, String stickerPackUrl) {
+                       String price, int priceStars, String previewUrl, String stickerPackUrl) {
         this.id = id;
         this.nameEn = nameEn;
         this.nameRu = nameRu;
         this.nameEt = nameEt;
         this.price = price;
+        this.priceStars = priceStars;
         this.previewUrl = previewUrl;
         this.stickerPackUrl = stickerPackUrl;
     }
@@ -39,6 +41,10 @@ public class StickerPack {
         return price;
     }
 
+    public int getPriceStars() {
+        return priceStars;
+    }
+
     public String getPreviewUrl() {
         return previewUrl;
     }
@@ -47,27 +53,27 @@ public class StickerPack {
         return stickerPackUrl;
     }
 
-    // Static catalog of available packs
     private static final Map<String, StickerPack> CATALOG = new HashMap<>();
 
     static {
-        // Using real cat images from public sources - all premium packs are 10€
         CATALOG.put("pack_1", new StickerPack(
                 "pack_1",
-                "bocchi",
-                "bocchi",
-                "bocchi",
-                "10€",
+                "Bocchi",
+                "Bocchi",
+                "Bocchi",
+                "1 ⭐",
+                1,
                 "https://i.pinimg.com/originals/65/39/5e/65395e7d4d8ea15941c538b54e293f60.gif",
                 "https://t.me/addstickers/pa_mVWgi4mzzGm39ly7Cp4W_by_SigStick12Bot"
         ));
 
         CATALOG.put("pack_2", new StickerPack(
                 "pack_2",
-                "Pixi Cats",
-                "Pixi Cats",
-                "Pixi Cats",
-                "10€",
+                "😹Pixicats",
+                "😹 Pixicats",
+                "😹 Pixicats",
+                "1 ⭐",
+                1,
                 "https://i.ibb.co/V070qxQS/IMG-0420.png",
                 "https://t.me/addstickers/pixicats1"
         ));

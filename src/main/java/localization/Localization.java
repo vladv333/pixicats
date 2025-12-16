@@ -37,17 +37,17 @@ public class Localization {
         en.put("btn_pay_exclusive", "💳 Pay 15€");
 
         // Store
-        en.put("store_title", "🏪 Premium Store - 10€\n\nReady-made premium packs! A collection of thematic PixiCats stickers for every taste.\n\nBuy and use them instantly!");
-        en.put("pack_details", "10 premium stickers\nPrice: 10€");
+        en.put("store_title", "🏪 Premium Store - 50 ⭐ per pack\n\nReady-made premium packs! A collection of thematic PixiCats stickers for every taste.\n\nBuy and use them instantly!");
+        en.put("pack_details", "10 premium stickers\nPrice: 50 ⭐ Stars");
         en.put("btn_add_cart", "➕ Add to Cart");
         en.put("added_to_cart", "✅ Added to cart!");
         en.put("btn_cart", "🛒 Cart");
         en.put("cart_empty", "Your cart is empty");
         en.put("cart_items", "🛒 Your Cart:\n\n");
-        en.put("btn_checkout", "💳 Checkout");
+        en.put("btn_checkout", "💳 Pay with Stars");
         en.put("btn_clear_cart", "🗑️ Clear Cart");
-        en.put("checkout_stub", "🎉 Thank you for your order!\n\nYour sticker packs:\n\n%s\n\n💡 Click the links above to add stickers to Telegram!");
-        en.put("pack_link_format", "%s\n→ %s\n");
+        en.put("payment_description", "PixiCats Premium Sticker Pack");
+        en.put("payment_success_msg", "🎉 Payment successful!\n\nThank you for your purchase! Here are your sticker packs:\n\n%s\n\n💡 Click the links above to add stickers to Telegram!");
         en.put("cart_cleared", "🗑️ Cart cleared");
 
         // Support
@@ -93,17 +93,17 @@ public class Localization {
         ru.put("btn_pay_exclusive", "💳 Оплатить 15€");
 
         // Store
-        ru.put("store_title", "🏪 Премиум магазин - 10€\n\nГотовые премиум наборы! Коллекция тематических стикеров PixiCats на любой вкус.\n\nКупите и используйте мгновенно!");
-        ru.put("pack_details", "10 премиум стикеров\nЦена: 10€");
+        ru.put("store_title", "🏪 Премиум магазин - 50 ⭐ за набор\n\nГотовые премиум наборы! Коллекция тематических стикеров PixiCats на любой вкус.\n\nКупите и используйте мгновенно!");
+        ru.put("pack_details", "10 премиум стикеров\nЦена: 50 ⭐ Stars");
         ru.put("btn_add_cart", "➕ Добавить в корзину");
         ru.put("added_to_cart", "✅ Добавлено в корзину!");
         ru.put("btn_cart", "🛒 Корзина");
         ru.put("cart_empty", "Ваша корзина пуста");
         ru.put("cart_items", "🛒 Ваша корзина:\n\n");
-        ru.put("btn_checkout", "💳 Оформить заказ");
+        ru.put("btn_checkout", "💳 Оплатить Stars");
         ru.put("btn_clear_cart", "🗑️ Очистить корзину");
-        ru.put("checkout_stub", "🎉 Спасибо за заказ!\n\nВаши стикерпаки:\n\n%s\n\n💡 Нажмите на ссылки выше, чтобы добавить стикеры в Telegram!");
-        ru.put("pack_link_format", "%s\n→ %s\n");
+        ru.put("payment_description", "Премиум стикерпак PixiCats");
+        ru.put("payment_success_msg", "🎉 Оплата прошла успешно!\n\nСпасибо за покупку! Вот ваши стикерпаки:\n\n%s\n\n💡 Нажмите на ссылки выше, чтобы добавить стикеры в Telegram!");
         ru.put("cart_cleared", "🗑️ Корзина очищена");
 
         // Support
@@ -149,17 +149,17 @@ public class Localization {
         et.put("btn_pay_exclusive", "💳 Maksa 15€");
 
         // Store
-        et.put("store_title", "🏪 Premium pood - 10€\n\nValmis premium paketid! Temaatiliste PixiCats kleepsude kollektsioon igale maitsele.\n\nOstke ja kasutage kohe!");
-        et.put("pack_details", "10 premium kleepsu\nHind: 10€");
+        et.put("store_title", "🏪 Premium pood - 50 ⭐ paketi kohta\n\nValmis premium paketid! Temaatiliste PixiCats kleepsude kollektsioon igale maitsele.\n\nOstke ja kasutage kohe!");
+        et.put("pack_details", "10 premium kleepsu\nHind: 50 ⭐ Stars");
         et.put("btn_add_cart", "➕ Lisa ostukorvi");
         et.put("added_to_cart", "✅ Lisatud ostukorvi!");
         et.put("btn_cart", "🛒 Ostukorv");
         et.put("cart_empty", "Teie ostukorv on tühi");
         et.put("cart_items", "🛒 Teie ostukorv:\n\n");
-        et.put("btn_checkout", "💳 Maksmine");
+        et.put("btn_checkout", "💳 Maksa Stars");
         et.put("btn_clear_cart", "🗑️ Tühjenda ostukorv");
-        et.put("checkout_stub", "🎉 Täname tellimuse eest!\n\nTeie kleepsupaketid:\n\n%s\n\n💡 Klõpsake ülalolevatest linkidest, et lisada kleepsud Telegrami!");
-        et.put("pack_link_format", "%s\n→ %s\n");
+        et.put("payment_description", "PixiCats Premium kleepsupakk");
+        et.put("payment_success_msg", "🎉 Makse õnnestus!\n\nTäname ostu eest! Siin on teie kleepsupaketid:\n\n%s\n\n💡 Klõpsake ülalolevatest linkidest, et lisada kleepsud Telegrami!");
         et.put("cart_cleared", "🗑️ Ostukorv tühjendatud");
 
         // Support
