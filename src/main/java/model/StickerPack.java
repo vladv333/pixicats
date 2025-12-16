@@ -61,6 +61,16 @@ public class StickerPack {
                 "https://i.pinimg.com/originals/65/39/5e/65395e7d4d8ea15941c538b54e293f60.gif",
                 "https://t.me/addstickers/pa_mVWgi4mzzGm39ly7Cp4W_by_SigStick12Bot"
         ));
+
+        CATALOG.put("pack_2", new StickerPack(
+                "pack_2",
+                "Pixi Cats",
+                "Pixi Cats",
+                "Pixi Cats",
+                "10€",
+                "https://i.ibb.co/V070qxQS/IMG-0420.png",
+                "https://t.me/addstickers/pixicats1"
+        ));
     }
 
     public static StickerPack getById(String id) {
