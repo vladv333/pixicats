@@ -1,5 +1,3 @@
-
-
 import config.BotConfig;
 import localization.Localization;
 import model.StickerPack;
@@ -7,7 +5,6 @@ import model.User;
 import utils.KeyboardBuilder;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.AnswerCallbackQuery;
-import org.telegram.telegrambots.meta.api.methods.invoices.SendInvoice;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
@@ -17,13 +14,9 @@ import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.media.InputMediaPhoto;
-import org.telegram.telegrambots.meta.api.objects.payments.LabeledPrice;
-import org.telegram.telegrambots.meta.api.objects.payments.SuccessfulPayment;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class PixiCatsBot extends TelegramLongPollingBot {
@@ -51,12 +44,8 @@ public class PixiCatsBot extends TelegramLongPollingBot {
             handleMessage(update.getMessage());
         } else if (update.hasMessage() && update.getMessage().hasPhoto()) {
             handlePhotoMessage(update.getMessage());
-        } else if (update.hasMessage() && update.getMessage().hasSuccessfulPayment()) {
-            handleSuccessfulPayment(update.getMessage());
         } else if (update.hasCallbackQuery()) {
             handleCallbackQuery(update.getCallbackQuery());
-        } else if (update.hasPreCheckoutQuery()) {
-            handlePreCheckoutQuery(update.getPreCheckoutQuery());
         }
     }
 
@@ -550,99 +539,43 @@ public class PixiCatsBot extends TelegramLongPollingBot {
 
     private void handleCheckout(Long chatId, Integer messageId, User user) {
         String lang = user.getLanguage();
-
-        if (user.getCart().isEmpty()) {
-            return;
-        }
-
-        // Calculate total price in Stars
-        int totalStars = 0;
-        List<LabeledPrice> prices = new ArrayList<>();
-        StringBuilder description = new StringBuilder();
-
-        for (String packId : user.getCart().getItems()) {
-            StickerPack pack = StickerPack.getById(packId);
-            if (pack != null) {
-                totalStars += pack.getPriceStars();
-                description.append(pack.getName(lang)).append(", ");
-            }
-        }
-
-        // Remove last comma
-        if (description.length() > 0) {
-            description.setLength(description.length() - 2);
-        }
-
-        // Add single price in Stars
-        prices.add(new LabeledPrice("Total", totalStars));
-
-        // Create invoice
-        SendInvoice invoice = new SendInvoice();
-        invoice.setChatId(chatId.toString());
-        invoice.setTitle("PixiCats Premium Stickers");
-        invoice.setDescription(description.toString());
-        invoice.setPayload("pixicats_cart_" + chatId); // Unique payload
-        invoice.setProviderToken("");
-        invoice.setCurrency("XTR"); // Telegram Stars currency
-        invoice.setPrices(prices);
-
-        try {
-            execute(invoice);
-        } catch (TelegramApiException e) {
-            System.err.println("Failed to send invoice: " + e.getMessage());
-            e.printStackTrace();
-        }
-    }
-
-    private void handlePreCheckoutQuery(org.telegram.telegrambots.meta.api.objects.payments.PreCheckoutQuery preCheckoutQuery) {
-        // Always approve pre-checkout
-        org.telegram.telegrambots.meta.api.methods.AnswerPreCheckoutQuery answer =
-                new org.telegram.telegrambots.meta.api.methods.AnswerPreCheckoutQuery();
-        answer.setPreCheckoutQueryId(preCheckoutQuery.getId());
-        answer.setOk(true);
-
-        try {
-            execute(answer);
-        } catch (TelegramApiException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void handleSuccessfulPayment(Message message) {
-        Long chatId = message.getChatId();
-        SuccessfulPayment payment = message.getSuccessfulPayment();
-        User user = getOrCreateUser(chatId);
-        String lang = user.getLanguage();
-
-        // Build sticker pack links
         StringBuilder links = new StringBuilder();
+
         for (String packId : user.getCart().getItems()) {
             StickerPack pack = StickerPack.getById(packId);
             if (pack != null) {
-                links.append(pack.getName(lang)).append("\n");
-                links.append("→ ").append(pack.getStickerPackUrl()).append("\n\n");
+                links.append(String.format(Localization.get("pack_link_format", lang),
+                        pack.getName(lang),
+                        pack.getStickerPackUrl()));
             }
         }
 
-        // Send confirmation with sticker pack links
-        SendMessage confirmMessage = new SendMessage();
-        confirmMessage.setChatId(chatId.toString());
-        confirmMessage.setText(String.format(Localization.get("payment_success_msg", lang), links.toString()));
-        confirmMessage.setReplyMarkup(KeyboardBuilder.buildMainMenu(lang));
+        EditMessageText message = new EditMessageText();
+        message.setChatId(chatId.toString());
+        message.setMessageId(messageId);
+        message.setText(String.format(Localization.get("checkout_stub", lang), links.toString()));
+        message.setReplyMarkup(KeyboardBuilder.buildBackButton(lang));
 
         try {
-            execute(confirmMessage);
+            execute(message);
+        } catch (TelegramApiException e) {
+            sendCheckout(chatId, user, links.toString(), lang);
+        }
+
+        user.getCart().clear();
+    }
+
+    private void sendCheckout(Long chatId, User user, String links, String lang) {
+        SendMessage message = new SendMessage();
+        message.setChatId(chatId.toString());
+        message.setText(String.format(Localization.get("checkout_stub", lang), links));
+        message.setReplyMarkup(KeyboardBuilder.buildBackButton(lang));
+
+        try {
+            execute(message);
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }
-
-        // Clear cart after successful payment
-        user.getCart().clear();
-
-        // Notify admin about purchase
-        notifyAdmin(chatId, "SUCCESSFUL PAYMENT",
-                "User purchased: " + payment.getTotalAmount() + " Stars\n" +
-                        "Invoice payload: " + payment.getInvoicePayload());
     }
 
     private void handleClearCart(Long chatId, Integer messageId, User user) {
