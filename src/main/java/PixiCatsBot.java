@@ -1,3 +1,5 @@
+
+
 import config.BotConfig;
 import localization.Localization;
 import model.StickerPack;
@@ -580,6 +582,7 @@ public class PixiCatsBot extends TelegramLongPollingBot {
         invoice.setTitle("PixiCats Premium Stickers");
         invoice.setDescription(description.toString());
         invoice.setPayload("pixicats_cart_" + chatId); // Unique payload
+        invoice.setProviderToken("");
         invoice.setCurrency("XTR"); // Telegram Stars currency
         invoice.setPrices(prices);
 

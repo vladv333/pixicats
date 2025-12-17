@@ -17,11 +17,11 @@
 
     <dependencies>
         <!-- Telegram Bots API -->
-        <dependency>
-            <groupId>org.telegram</groupId>
-            <artifactId>telegrambots</artifactId>
-            <version>6.9.7.1</version>
-        </dependency>
+            <dependency>
+                <groupId>org.telegram</groupId>
+                <artifactId>telegrambots</artifactId>
+                <version>6.9.7.1</version>
+            </dependency>
 
         <!-- SLF4J для логирования -->
         <dependency>
