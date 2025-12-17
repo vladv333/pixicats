@@ -46,7 +46,8 @@ public class Localization {
         en.put("cart_items", "🛒 Your Cart:\n\n");
         en.put("btn_checkout", "💳 Checkout");
         en.put("btn_clear_cart", "🗑️ Clear Cart");
-        en.put("checkout_success", "🎉 Thank you for your order!\n\nYour sticker packs:\n\n%s\n\n💡 Click the links above to add stickers to Telegram!");
+        en.put("checkout_stub", "🎉 Thank you for your order!\n\nYour sticker packs:\n\n%s\n\n💡 Click the links above to add stickers to Telegram!");
+        en.put("pack_link_format", "%s\n→ %s\n");
         en.put("cart_cleared", "🗑️ Cart cleared");
 
         // Support
@@ -101,7 +102,8 @@ public class Localization {
         ru.put("cart_items", "🛒 Ваша корзина:\n\n");
         ru.put("btn_checkout", "💳 Оформить заказ");
         ru.put("btn_clear_cart", "🗑️ Очистить корзину");
-        ru.put("checkout_success", "🎉 Спасибо за заказ!\n\nВаши стикерпаки:\n\n%s\n\n💡 Нажмите на ссылки выше, чтобы добавить стикеры в Telegram!");
+        ru.put("checkout_stub", "🎉 Спасибо за заказ!\n\nВаши стикерпаки:\n\n%s\n\n💡 Нажмите на ссылки выше, чтобы добавить стикеры в Telegram!");
+        ru.put("pack_link_format", "%s\n→ %s\n");
         ru.put("cart_cleared", "🗑️ Корзина очищена");
 
         // Support
@@ -156,7 +158,8 @@ public class Localization {
         et.put("cart_items", "🛒 Teie ostukorv:\n\n");
         et.put("btn_checkout", "💳 Maksmine");
         et.put("btn_clear_cart", "🗑️ Tühjenda ostukorv");
-        et.put("checkout_success", "🎉 Täname tellimuse eest!\n\nTeie kleepsupaketid:\n\n%s\n\n💡 Klõpsake ülalolevatest linkidest, et lisada kleepsud Telegrami!");
+        et.put("checkout_stub", "🎉 Täname tellimuse eest!\n\nTeie kleepsupaketid:\n\n%s\n\n💡 Klõpsake ülalolevatest linkidest, et lisada kleepsud Telegrami!");
+        et.put("pack_link_format", "%s\n→ %s\n");
         et.put("cart_cleared", "🗑️ Ostukorv tühjendatud");
 
         // Support
